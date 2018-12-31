@@ -6,12 +6,16 @@ class Parser:
         self.id_len = id_len  # Number of characters that define the unique identifier for each contact
         self.info_len = info_len  # Number of characters that define the length of the information
 
-    def parse(self, file_name, att, list_att):
+    def parse(self, file_name, att, list_att=None):
         with open(file_name, 'r') as f:  # Reading lines from file
             lines = f.readlines()
 
         attributes_dic = {}
         identifiers = set()
+
+        # Init the list attributes to be the phone calls list as well as the call logs list
+        if not list_att:
+            list_att = ['phone', 'time']
 
         for line in lines:
             attribute_name = att[line[:self.id_len]]  # Get current line identifier
