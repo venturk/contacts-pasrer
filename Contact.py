@@ -87,4 +87,4 @@ class Contact(object):
 
     @full_name.setter
     def full_name(self, value):
-        self._full_name = value.rstrip()
+        self._full_name = value.strip()

@@ -1,11 +1,16 @@
 from Contact import Contact
 from Parser import Parser
+from sys import argv
 
 
-def main():
-    p = Parser()
-    file_name = 'ex_v7'  # The file name to be parsed
-    att = {'5159': 'phone', 'D812': 'time', '9E60': 'last', '86B7': 'first', '6704': 'image'}
+if __name__ == "__main__":
+    p = Parser()  # Init parser
+    if len(argv) == 1:  # Init the file name to be parsed
+        file_name = 'ex_v7'
+    else:
+        file_name = argv[1]
+
+    att = {'86B7': 'first', '9E60': 'last', '5159': 'phone', 'D812': 'time', '6704': 'image'}
 
     attributes, identifiers = p.parse(file_name, att)  # Let the parsing begin
     contacts = []  # Init list of contacts
@@ -24,6 +29,3 @@ def main():
         # contact.save_image()  # Optional --> save_image() will save the image ('contact name.jpg')
         # contact.show_image()  # Optional --> show_image() will save (if not yet saved) and than open the image
 
-
-if __name__ == "__main__":
-    main()
