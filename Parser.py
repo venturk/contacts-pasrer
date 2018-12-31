@@ -6,7 +6,7 @@ class Parser:
         self.id_len = id_len  # Number of characters that define the unique identifier for each contact
         self.info_len = info_len  # Number of characters that define the length of the information
 
-    def parse(self, file_name, att):
+    def parse(self, file_name, att, list_att):
         with open(file_name, 'r') as f:  # Reading lines from file
             lines = f.readlines()
 
@@ -19,7 +19,7 @@ class Parser:
             line_length = len(line.strip())  # Length of line without trailing spaces
 
             if attribute_name not in attributes_dic:
-                attributes_dic[attribute_name] = defaultdict(lambda: [] if attribute_name == 'phone' else '')
+                attributes_dic[attribute_name] = defaultdict(lambda: [] if attribute_name in list_att else '')
 
             while index < line_length:
                 contact_id = line[index:index + self.id_len]  # get current contact identifier
@@ -29,7 +29,7 @@ class Parser:
                 info_len = int(line[index:index + self.info_len], 16)  # How many characters we need to read
                 index += self.info_len
 
-                if attribute_name == 'phone':
+                if attribute_name in list_att:
                     attributes_dic[attribute_name][contact_id].append(
                         line[index:index + info_len])  # Append phone number
                 else:
