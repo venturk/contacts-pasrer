@@ -26,8 +26,9 @@ class Contact(object):
         for phone in self.phone_numbers:
             str += 16 * ' ' + phone + '\n'
 
-        str += 'Creation time:\n'
-        str += 16 * ' ' + self.time + '\n'
+        str += 'Call logs:\n'
+        for log in self.time:
+            str += 16 * ' ' + self.time + '\n'
 
         return str
 
