@@ -28,7 +28,7 @@ class Contact(object):
 
         str += 'Call logs:\n'
         for log in self.time:
-            str += 16 * ' ' + self.time + '\n'
+            str += 16 * ' ' + log + '\n'
 
         return str
 
@@ -55,8 +55,10 @@ class Contact(object):
 
     @time.setter
     def time(self, value):
+        self._call_logs = []
         # Converting a UNIX Timestamp to Formatted Date String
-        self._call_logs = datetime.fromtimestamp(int(value)).strftime('%Y-%m-%d %H:%M:%S')
+        for ts in value:
+            self._call_logs.append(datetime.fromtimestamp(int(ts)).strftime('%Y-%m-%d %H:%M:%S'))
 
     @property
     def phone_numbers(self):
