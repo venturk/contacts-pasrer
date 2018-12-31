@@ -11,8 +11,9 @@ if __name__ == "__main__":
         file_name = argv[1]
 
     att = {'86B7': 'first', '9E60': 'last', '5159': 'phone', 'D812': 'time', '6704': 'image'}
+    list_att = ['phone', 'time']
 
-    attributes, identifiers = p.parse(file_name, att)  # Let the parsing begin
+    attributes, identifiers = p.parse(file_name, att, list_att)  # Let the parsing begin
     contacts = []  # Init list of contacts
 
     for id in identifiers:  # for each ID --> Create a contact with its attribute values
